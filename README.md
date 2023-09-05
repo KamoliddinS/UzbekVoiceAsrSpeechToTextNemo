@@ -8,7 +8,8 @@ This repository contains code and resources to train a speech-to-text model usin
 
 - A machine with an NVIDIA GPU.
 - Conda environment manager.
-- Python 3.9.
+- Python 3.10
+- Pytorch 1.13.1 or above
 
 you have to download dataset from [here](https://drive.google.com/drive/folders/18N5i7GD0LmUnNQok6BP3EC8PYov7pZDW) 
 
@@ -29,34 +30,33 @@ unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
 
 2. **Set Up a Conda Environment**:
    ```bash
-   conda create --name nemo_asr_uzbek python=3.9
+   conda create --name nemo_asr_uzbek python==3.10.12
    conda activate nemo_asr_uzbek
    ```
-
-3. **Install Dependencies**:
+3. **Install prerequisites**:
    ```bash
-   pip install nemo_toolkit[asr]
+   conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
    ```
 
+4. **Install NeMo**:
+   ```bash
+    apt-get update && apt-get install -y libsndfile1 ffmpeg
+    pip install Cython
+    pip install nemo_toolkit['all']
+   ```
    > Note: You might need to install additional dependencies based on your specific requirements.
 
-<!-- ## Usage
-
-1. **Prepare the Dataset**:
-   - Place your Uzbek voice dataset in the `data/` directory.
-   - Ensure the dataset is in the required format for NeMo ASR.
-
-2. **Train the Model**:
+5. **Install other dependencies**:
    ```bash
-   python train_asr.py
+   pip install -r requirements.txt
    ```
 
-3. **Evaluate and Use the Model**:
-   - Once training is complete, you can use the trained model for inference on new audio samples.
-   - Use the provided `inference.py` script to transcribe audio files:
-     ```bash
-     python inference.py --audio_path path_to_audio.wav
-     ``` -->
+## Preprocessing Audio Dataset 
+```bash
+python pre_processing_auidio.py AUDIO_DIR_PATH
+```
+
+
 
 ## Contributing
 
