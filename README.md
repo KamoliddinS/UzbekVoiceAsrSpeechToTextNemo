@@ -10,7 +10,14 @@ This repository contains code and resources to train a speech-to-text model usin
 - Conda environment manager.
 - Python 3.9.
 
-you have to download dataset from [here](https://drive.google.com/drive/folders/18N5i7GD0LmUnNQok6BP3EC8PYov7pZDW) unzip it and put it in the `data/` directory.
+you have to download dataset from [here](https://drive.google.com/drive/folders/18N5i7GD0LmUnNQok6BP3EC8PYov7pZDW) 
+
+you will get clips.zip file and voice_dataset.json file
+
+voice_dataset.json file contains meta data about dataset
+clips.zip file contains audio files
+
+unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
 
 ## Installation
 
