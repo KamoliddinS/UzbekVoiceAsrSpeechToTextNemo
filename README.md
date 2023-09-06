@@ -20,6 +20,12 @@ clips.zip file contains audio files
 
 unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
 
+
+you have to download pre_trained model from [here](
+https://dri)
+and unzip it and put into the current directory
+
+
 ## Installation
 
 1. **Clone the Repository**:
@@ -27,6 +33,7 @@ unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
    git clone https://github.com/KamoliddinS/UzbekvoiceAsrTextToSpeechNemo.git
    cd UzbekvoiceAsrTextToSpeechNemo
    ```
+   > You have to download pre_trained model from [here](https://dri) and unzip it and put into the current directory. 
 
 2. **Set Up a Conda Environment**:
    ```bash
