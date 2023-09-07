@@ -24,7 +24,7 @@ def create_nemo_asr_json_files(csv_filepath, audio_files_path, cer_threshold):
         with open(filename, 'w') as file:
             for _, entry in dataframe.iterrows():
                 data = {
-                    "audio_filepath": audio_files_path + entry["audio_file_path"].split('/')[-1],
+                    "audio_filepath": audio_files_path + entry["client_id"] +"/"+ entry["original_sentence_id"] + ".wav",
                     "duration": entry["clip_duration"],
                     "text": entry["original_sentence"]
                 }
@@ -38,7 +38,7 @@ def create_nemo_asr_json_files(csv_filepath, audio_files_path, cer_threshold):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create Nemo ASR compatible JSON files from CSV data.")
     parser.add_argument("--csv_filepath",  type=str, default="./2_stage_preprocessed_data.csv",  help="Path to the CSV file.")
-    parser.add_argument("--audio_files_path", type=str, default="/media/real/data/uzbekvoice/clips",  help="Base path for the audio files.")
+    parser.add_argument("--audio_files_path", type=str, default="/media/real/data/uzbekvoice/clips/",  help="Base path for the audio files.")
     parser.add_argument("--cer_threshold", type=float, default=0.18, help="CER threshold for filtering data.")
     
     args = parser.parse_args()
