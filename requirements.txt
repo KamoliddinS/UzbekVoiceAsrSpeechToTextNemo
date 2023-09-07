@@ -1,3 +1,5 @@
 gdown
 pydub
 nemo
+scikit-learn
+pandas
