@@ -18,7 +18,7 @@ you will get clips.zip file and voice_dataset.json file
 voice_dataset.json file contains meta data about dataset
 clips.zip file contains audio files
 
-unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
+unzip clips.zip
 
 
 you have to download pre_trained model from [here](https://drive.google.com/drive/folders/1dq_jXAJqyEeITShxEvrVQumE_3ix4TYW?usp=sharing)
