@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     # Argument parsing
     parser = argparse.ArgumentParser(description='Convert MP3 files to WAV format in a specified folder.')
-    parser.add_argument('folder_path', type=str, help='Path to the folder containing MP3 files.')
+    parser.add_argument('--folder_path', type=str, help='Path to the folder containing MP3 files.')
     args = parser.parse_args()
 
     list_files_in_folder(args.folder_path)
