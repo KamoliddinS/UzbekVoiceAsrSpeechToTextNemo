@@ -2,4 +2,5 @@ saved_model
 *.csv
 *.json
 *.nemo
+*.idea
 lightning_logs
