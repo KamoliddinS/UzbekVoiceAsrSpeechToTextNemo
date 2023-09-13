@@ -11,7 +11,7 @@ This repository contains code and resources to train a speech-to-text model usin
 - Python 3.10
 - Pytorch 1.13.1 or above
 
-you have to download dataset from [here](https://drive.google.com/drive/folders/1dq_jXAJqyEeITShxEvrVQumE_3ix4TYW?usp=sharing) 
+you have to download dataset from [here](https://uzbekvoice.ai) 
 
 you will get clips.zip file and voice_dataset.json file
 
@@ -21,8 +21,7 @@ clips.zip file contains audio files
 unzip clips.zip  and replace INPUT_FILE_PATH, AUDIO_DIR_PATH
 
 
-you have to download pre_trained model from [here](
-https://dri)
+you have to download pre_trained model from [here](https://drive.google.com/drive/folders/1dq_jXAJqyEeITShxEvrVQumE_3ix4TYW?usp=sharing)
 and unzip it and put into the current directory
 
 
