@@ -11,7 +11,7 @@ This repository contains code and resources to train a speech-to-text model usin
 - Python 3.10
 - Pytorch 1.13.1 or above
 
-you have to download dataset from [here](https://drive.google.com/drive/folders/18N5i7GD0LmUnNQok6BP3EC8PYov7pZDW) 
+you have to download dataset from [here](https://drive.google.com/drive/folders/1dq_jXAJqyEeITShxEvrVQumE_3ix4TYW?usp=sharing) 
 
 you will get clips.zip file and voice_dataset.json file
 
