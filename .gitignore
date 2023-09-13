@@ -2,3 +2,4 @@ saved_model
 *.csv
 *.json
 *.nemo
+lightning_logs

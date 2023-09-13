@@ -10,7 +10,7 @@ from ruamel.yaml import YAML
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-def train_and_evaluate(train_json_path, test_json_path, model_name, model_save_path, checkpoint):
+def train_and_evaluate(train_json_path, test_json_path, model_name,num_epochs, model_save_path, checkpoint):
     # --- Config Information ---#
     config_path = './configs/config.yaml'
     if not os.path.exists(config_path):
@@ -27,10 +27,30 @@ def train_and_evaluate(train_json_path, test_json_path, model_name, model_save_p
     params['model']['validation_ds']['manifest_filepath'] = test_json_path
 
     if model_name:
+        import copy
+        new_opt = copy.deepcopy(params['model']['optim'])
+        new_opt['lr'] = 0.001
         # Transfer Learning
         logging.info(f"Loading pre-trained model: {model_name} for transfer learning...")
         asr_model = nemo_asr.models.EncDecCTCModel.from_pretrained(model_name=model_name)
-        asr_model.change_vocabulary(new_vocabulary=[' ', 'a', 'b','d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z', "1", "2", "3", "4", "5", "‘", "."])
+        
+        logging.info(f"Changing vocabulary from: {asr_model.decoder.vocabulary}")
+        asr_model.change_vocabulary(new_vocabulary=[' ', 'a', 'b','d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z', "1", "2", "3", "4", "5", "'"])
+        logging.info(f"New vocabulary: {asr_model.decoder.vocabulary}")
+        # Use the smaller learning rate we set before
+        asr_model.setup_optimization(optim_config=DictConfig(new_opt))
+
+        # Point to the data we'll use for fine-tuning as the training set
+        asr_model.setup_training_data(train_data_config=params['model']['train_ds'])
+
+        # Point to the new validation data for fine-tuning
+        asr_model.setup_validation_data(val_data_config=params['model']['validation_ds'])
+
+        # And now we can create a PyTorch Lightning trainer and call `fit` again.
+        trainer = pl.Trainer(devices=1, accelerator='gpu', max_epochs=num_epochs)
+        trainer.fit(asr_model)
+
+
     else:
         # Train from scratch
         logging.info("Training ASR model from scratch...")
@@ -74,6 +94,7 @@ if __name__ == "__main__":
     parser.add_argument("--model_name", type=str, default=None, help="Name of the pre-trained model for transfer learning. If not provided, train from scratch.")
     parser.add_argument("--model_save_path", type=str, default="./asr_model.nemo", help="Path to save the trained ASR model.")
     parser.add_argument("--checkpoint", action="store_true", help="Whether to evaluate the model or not.")
+    parser.add_argument("--num_epochs", type=int, default=180, help="Number of epochs to train the model.")
 
     args = parser.parse_args()
-    train_and_evaluate(args.train_json_path, args.test_json_path, args.model_name, args.model_save_path, args.checkpoint)
+    train_and_evaluate(args.train_json_path, args.test_json_path, args.model_name, args.num_epochs, args.model_save_path, args.checkpoint)

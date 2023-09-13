@@ -58,11 +58,72 @@ and unzip it and put into the current directory
    pip install -r requirements.txt
    ```
 
-## Preprocessing Audio Dataset 
+
+## Usage
+The following steps are required to train a speech-to-text model using the Uzbek voice dataset.
+
+### 1. Data Cleaning - Stage 1
+
+**Script**: `clean_stage_1.py`
+
+- **Input**: `voice_dataset.json`
+- **Output**: `1_stage_preprocessed_data.csv`
+
+**Usage**:
 ```bash
-python pre_processing_auidio.py AUDIO_DIR_PATH
+python clean_stage_1.py
 ```
 
+### 2. Audio Preprocessing
+
+**Script**: `pre_procecessing_auido.py`
+
+- **Input**: Folder path containing the audio files from the uzbekvoice dataset.
+- **Function**: Converts `.mp3` files to `.wav` format.
+
+**Usage**:
+```bash
+python pre_procecessing_auido.py --folder_path /path/to/uzbekvoice/dataset
+```
+**Note**: Download the uzbekvoice dataset audio files and provide the path to the dataset.
+
+### 3. Levenshtein Cleaning
+
+**Script**: `levenshtain_clean.py`
+
+**Usage**:
+```bash
+python levenshtain_clean.py --input_csv 1_stage_preprocessed_data.csv --audio_files_dir /path/to/preprocessed/wav/files --output_csv output.csv --model_path /path/to/pretrained/model
+```
+**Note**: 
+- Download the pre-trained model from the provided link, unzip it, and place it in the repository's cloned directory.
+- Provide the path to the preprocessed `.wav` files folder.
+
+### 4. NeMo ASR Format Conversion
+
+**Script**: `nemo_asr_format.py`
+
+**Usage**:
+```bash
+python nemo_asr_format.py --csv_filepath output.csv --audio_files_path /path/to/audio/files --cer_threshold 0.18
+```
+**Note**: Provide the path to the audio files that were downloaded and preprocessed.
+
+### 5. Model Training
+
+**Script**: `train.py`
+
+**Usage**:
+```bash
+python train.py --train_json_path train.json --test_json_path test.json --model_name model_name --model_save_path /path/to/save/model --checkpoint True --num_epochs 10
+```
+**Note**: 
+- By default, `nemo_asr_format.py` outputs `train.json` and `test.json`.
+- Provide the desired model name and the path where you want to save the trained model.
+- The `--checkpoint` flag determines whether to evaluate the model or not.
+
+
+> By following the above steps, you can preprocess, clean, and train an Uzbek Speech-to-Text model using Nvidia NeMo ASR. Ensure that all the required datasets and pre-trained models are downloaded and placed in the appropriate directories before running the scripts.
 
 
 ## Contributing
