@@ -46,7 +46,7 @@ and unzip it and put into the current directory
 
 4. **Install NeMo**:
    ```bash
-    apt-get update && apt-get install -y libsndfile1 ffmpeg
+    sudo apt-get update && apt-get install -y libsndfile1 ffmpeg
     pip install Cython
     pip install nemo_toolkit['all']
    ```
