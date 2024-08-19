@@ -92,7 +92,7 @@ python pre_procecessing_auido.py --folder_path /path/to/uzbekvoice/dataset
 
 **Usage**:
 ```bash
-python levenshtain_clean.py --input_csv 1_stage_preprocessed_data.csv --audio_files_dir /path/to/preprocessed/wav/files --output_csv output.csv --model_path /path/to/pretrained/model
+python levenshtein_clean.py --input_csv 1_stage_preprocessed_data.csv --audio_files_dir /path/to/preprocessed/wav/files --output_csv output.csv --model_path /path/to/pretrained/model
 ```
 **Note**: 
 - Download the pre-trained model from the provided link, unzip it, and place it in the repository's cloned directory. [DOWNLOAD](https://drive.google.com/drive/folders/1dq_jXAJqyEeITShxEvrVQumE_3ix4TYW?usp=sharing)
