@@ -33,7 +33,8 @@ def transcribe_single_audio(wav_file):
 
 
 # Path to your .wav file
-wav_file_path = '/media/real/data/uzbekvoice/clips/9ba8dc48-7b33-4def-a889-caef56f818a5/07b465b0529801ea040313b64cce70233b7b94ad7bccbd4d6c57ca4c6584a8e9.wav'
+# wav_file_path = '/media/real/data/uzbekvoice/clips/9ba8dc48-7b33-4def-a889-caef56f818a5/07b465b0529801ea040313b64cce70233b7b94ad7bccbd4d6c57ca4c6584a8e9.wav'
+wav_file_path = '07b465b0529801ea040313b64cce70233b7b94ad7bccbd4d6c57ca4c6584a8e9.wav'
 
 # Get the transcription
 transcription = transcribe_single_audio(wav_file_path)
