@@ -1,0 +1,15 @@
+services:
+  nemo-uzbek-voice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python test.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0

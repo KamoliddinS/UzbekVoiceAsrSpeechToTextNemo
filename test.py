@@ -9,7 +9,6 @@ nemo.utils.logging.set_verbosity(nemo.utils.logging.ERROR)  # this is for hiding
 # Load the pre-trained or fine-tuned NEMO ASR model
 asr_model = nemo_asr.models.EncDecCTCModel.restore_from("asr_model.nemo")
 
-
 # Function to perform transcription on a single .wav file
 def transcribe_single_audio(wav_file):
     # Load audio file
